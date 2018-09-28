@@ -1,0 +1,7 @@
+[package]
+name = "slack-bot-for-meet"
+version = "0.1.0"
+authors = ["aeyeong <iiogmgo@ridi.com>"]
+
+[dependencies]
+slack = "0.21.0"
