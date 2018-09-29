@@ -120,6 +120,13 @@ version = "0.5.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
+name = "domeet"
+version = "0.1.0"
+dependencies = [
+ "slack 0.21.0 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
 name = "dtoa"
 version = "0.4.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -744,13 +751,6 @@ dependencies = [
  "serde_json 1.0.30 (registry+https://github.com/rust-lang/crates.io-index)",
  "slack_api 0.20.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "tungstenite 0.5.4 (registry+https://github.com/rust-lang/crates.io-index)",
-]
-
-[[package]]
-name = "slack-bot-for-meet"
-version = "0.1.0"
-dependencies = [
- "slack 0.21.0 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]

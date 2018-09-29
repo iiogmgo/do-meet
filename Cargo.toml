@@ -1,5 +1,5 @@
 [package]
-name = "slack-bot-for-meet"
+name = "domeet"
 version = "0.1.0"
 authors = ["aeyeong <iiogmgo@ridi.com>"]
 
