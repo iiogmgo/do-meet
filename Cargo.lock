@@ -123,6 +123,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 name = "domeet"
 version = "0.1.0"
 dependencies = [
+ "rand 0.5.5 (registry+https://github.com/rust-lang/crates.io-index)",
  "slack 0.21.0 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 

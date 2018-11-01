@@ -1,5 +1,7 @@
 extern crate slack;
+extern crate rand;
 
+use rand::Rng;
 use std::error::Error;
 use slack::{Event, RtmClient, Message, User};
 use slack::api::MessageStandard;
@@ -39,6 +41,24 @@ fn get_bot_id(cli: &RtmClient) -> String {
     }
 }
 
+fn lunch() -> String {
+    let vs = vec!["김치찌개", "설렁탕", "중식", "닭갈비", "오버런치나해"];
+    let pick = rand::thread_rng().choose(&vs);
+
+    match pick {
+        Some(c) => format!("오늘은 `{}` 어때?", c).to_string(),
+        _ => panic!("Error")
+    }
+}
+
+fn msg_to_event(msg: &String) -> String {
+    if msg.contains("lunch") || msg.contains("점심") {
+        lunch()
+    } else {
+        String::from("미안, 아직 점심추천밖에 못해!")
+    }
+}
+
 #[allow(unused_variables)]
 impl slack::EventHandler for DoMeetHandler {
     fn on_event(&mut self, cli: &RtmClient, event: Event) {
@@ -50,11 +70,11 @@ impl slack::EventHandler for DoMeetHandler {
                     let bot_id = get_bot_id(cli);
                     let origin_text = text.as_ref().unwrap();
                     let origin_msg = str::replace(origin_text, &format!("<@{}> ", bot_id).to_string(), "");
-                    let msg = &format!("hello, you said `{}`", origin_msg).to_string();
+                    let msg = msg_to_event(&origin_msg);
 
                     let _ = cli.sender().send_message(
                         channel.as_ref().unwrap(),
-                        msg,
+                        &msg,
                     );
                 }
                 _ => panic!("Message decoded into incorrect variant."),
