@@ -69,6 +69,10 @@ impl slack::EventHandler for DoMeetHandler {
                 Message::Standard(MessageStandard { ref text, ref channel, .. }) => {
                     let bot_id = get_bot_id(cli);
                     let origin_text = text.as_ref().unwrap();
+                    if !origin_text.contains(&bot_id) {
+                        return;
+                    }
+
                     let origin_msg = str::replace(origin_text, &format!("<@{}> ", bot_id).to_string(), "");
                     let msg = msg_to_event(&origin_msg);
 
